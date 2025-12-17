@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pizzería - Catálogo</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
   </head>
   <body>
     <div class="container">
       <h1 class="titulo">🍕 Nuestras Pizzas</h1>
       <div class="form-container">
-        <form class="form-buscar" action="">
-          <button class="btn-buscar" type="submit">Buscar pizza</button>
-          <input placeholder="ID (Por ejemplo: 1)" type="number" />
-        </form>
+        <button class="btn-buscar" type="button">Buscar pizza</button>
+        <input
+          class="input-buscar"
+          placeholder="ID (Por ejemplo: 5)"
+          type="number"
+        />
       </div>
       <div class="pizzas-grid">
         <!--
@@ -36,5 +39,6 @@
         !-->
       </div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>

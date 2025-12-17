@@ -46,4 +46,62 @@ const pizzas = [
   },
 ];
 
+const btnBuscar = document.querySelector(".btn-buscar")
+const inputBuscar = document.querySelector(".input-buscar")
+const resultadoCointainer = document.querySelector(".pizzas-grid")
 
+const buscarPizza = (id) => {
+  return pizzas.find((pizza) => pizza.id === id)
+}
+
+const renderizarResultado = (pizza) => {
+  if (!pizza) {
+    return resultadoCointainer.innerHTML = `
+      <div class="pizza-card">
+          <div class="card-imagen">
+            <img src="./img/lupa.svg" />
+          </div>
+          <div class="card-contenido">
+            <h2 class="card-nombre">No se encontraron resultados con ese ID</h2>
+          </div>
+        </div>
+    `
+  } else {
+    return resultadoCointainer.innerHTML = `
+        <div class="pizza-card">
+          <div class="card-imagen">
+            <img src=${pizza.imagen} />
+            <span class="card-id">ID: ${pizza.id}</span>
+          </div>
+          <div class="card-contenido">
+            <h2 class="card-nombre">${pizza.nombre}</h2>
+            <div class="card-ingredientes">
+            ${pizza.ingredientes.map((ingrediente) => {
+                return `<span class="ingrediente">${ingrediente}</span>`
+              }).join("")}
+            </div>
+            <div class="card-footer">
+              <span class="card-precio">$${pizza.precio}</span>
+              <button class="btn-agregar">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+    `
+  }
+}
+
+const botonBuscarPizza = () => {
+  let valorInput = Number(inputBuscar.value)
+  if (!valorInput) {
+    return alert("No se proporcionó ID")
+  }
+  inputBuscar.value = ""
+  return renderizarResultado(buscarPizza(valorInput))
+}
+
+const iniciar = () => {
+  btnBuscar.addEventListener("click", botonBuscarPizza)
+  
+}
+
+iniciar()
